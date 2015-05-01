@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|Lobster|Oswald|Pacifico|Abril+Fatface|Patua+One|Lobster+Two|Playball' rel='stylesheet' type='text/css'>
+    <title>Startup</title>
+    <style>
+        html{
+            text-align: center;
+            margin-top:10%;
+            font-size: 200%;
+        }
+        h1, h2{
+            border: 5px;
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+<h1 class="startup_name"></h1>
+<h2 class="startup_tagline"></h2>
+
+<script src="words.js"></script>
+<script src="nouns.js"></script>
+<script src="verbs.js"></script>
+<script src="uses.js"></script>
+<script src="taglines.js"></script>
+<script src="jquery.js"></script>
+<script src="please.js"></script>
+<script type="text/javascript">
+    var capitalize = function (str) {
+      return str[0].toUpperCase() + str.slice(1);
+    },
+    randomWord = function (wordList, letterCase) {
+      var word = wordList[Math.floor(Math.random() * wordList.length)];
+      if (letterCase === true) return capitalize(word);
+      if (letterCase === false) return word.toLowerCase();
+      else return word;
+    };
+    var startup = {};
+    var generateName = function () {
+      var random = Math.random(),
+      suffixes = ['ify', 'tr', 'r', '.ly', '.io', '.us', '.me', 'ster', 'ter', 'DB', 'kick'];
+      if (random < .3) { // Combine words
+        startup.word = randomWord(nouns, true)
+        return startup.word + randomWord(nouns, true);
+      }
+      else if (random < .8) { // Suffix
+        startup.word = randomWord(nouns, false);
+        return startup.word + randomWord(suffixes);
+      }
+      else { // Backwards word
+        startup.word = randomWord(nouns, true);
+        return startup.word + startup.word;
+      }
+    };
+    var generateTagline = function () {
+      var random = Math.random();
+      if (random < .3) {
+        return "It's " + capitalize(startup.word) + " for " + randomWord(uses);
+      }
+      else {
+        return randomWord(taglines).replace('__', capitalize(startup.word))
+      }
+    };
+    var randomFont = function() {
+       var items = ['Poiret One', 'Lobster', 'Oswald', 'Pacifico', 'Abril Fatface', 'Patua One', 'Lobster Two', 'Playball'];
+       return items[Math.floor(Math.random()*items.length)];
+    }
+    
+    var c = Please.make_color({
+        format: 'hsv'
+    });
+    
+    var x = Please.make_scheme(
+    c,
+    {
+        scheme_type: 'tri',
+        format: 'hex'
+    });
+    
+    console.log(c);
+    
+    $('.startup_name').html(generateName());
+    $('.startup_tagline').html(generateTagline());
+    $('html').css("font-family", randomFont());
+    $('html').css("background", x[0]);
+    $('h1').css("color", x[1]);
+    $('h2').css("color", x[2]);
+</script>
+</body>
+</html>
