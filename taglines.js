@@ -1,0 +1,1 @@
+var taglines = ["__s Are So 20th Century", "__ for the 21st Century", "__, Improved", "__, Revolutionized", "__, Reloaded", "Changing How You __", "Changing the Way You __", "__ Yourself", "__ing, Better"];
