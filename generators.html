@@ -9,16 +9,23 @@
             text-align: center;
             margin-top:10%;
             font-size: 200%;
+          }
+        body{
+            width: fixed;
+            margin-left: auto;
+            margin-right: auto;
         }
-        h1, h2{
+        h1, h2, h3, h4, h5, h6{
             border: 5px;
             padding:5px;
+            background: white;
         }
     </style>
 </head>
 <body>
 <h1 class="startup_name"></h1>
 <h2 class="startup_tagline"></h2>
+<h3 class='h3'>a real startup. fund us</h3>
 
 <script src="words.js"></script>
 <script src="nouns.js"></script>
@@ -67,20 +74,18 @@
        var items = ['Poiret One', 'Lobster', 'Oswald', 'Pacifico', 'Abril Fatface', 'Patua One', 'Lobster Two', 'Playball'];
        return items[Math.floor(Math.random()*items.length)];
     }
-    
+
     var c = Please.make_color({
         format: 'hsv'
     });
-    
+
     var x = Please.make_scheme(
     c,
     {
         scheme_type: 'tri',
         format: 'hex'
     });
-    
-    console.log(c);
-    
+
     $('.startup_name').html(generateName());
     $('.startup_tagline').html(generateTagline());
     $('html').css("font-family", randomFont());
